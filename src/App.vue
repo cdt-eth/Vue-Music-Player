@@ -11,11 +11,10 @@
         </h2>
         <div class="controls">
           <button class="prev">Prev</button>
-          <button class="play" v-if="!isPlaying">Play</button>
-          <button class="pause" v-else>Pause</button>
+          <button class="play" v-if="!isPlaying" @click="play">Play</button>
+          <button class="pause" v-else @click="pause">Pause</button>
           <button class="next">Next</button>
         </div>
-        <!-- {{ songs[0].src }} -->
       </section>
     </main>
   </div>
@@ -50,10 +49,23 @@ export default {
       player: new Audio(),
     };
   },
+  methods: {
+    play(song) {
+      if (typeof song.src != "undefined") {
+        this.current = song;
+        this.player.src = this.current.src;
+      }
+      this.player.play();
+      this.isPlaying = true;
+    },
+    pause() {
+      this.player.pause();
+      this.isPlaying = false;
+    },
+  },
   created() {
     this.current = this.songs[this.index];
     this.player.src = this.current.src;
-    // this.player.play();
   },
 };
 </script>
