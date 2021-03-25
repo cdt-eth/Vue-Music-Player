@@ -1,11 +1,15 @@
 <template>
   <div id="app">
     <header>
-      <h1>My Muisc</h1>
+      <h1>My Music</h1>
     </header>
     <main>
       <section class="player">
-        <h2 class="song-title">test</h2>
+        <!-- 2) template strings, from our data -->
+        <h2 class="song-title">
+          {{ current.title }} - <span> {{ current.artist }} </span>
+        </h2>
+        <!-- {{ songs[0].src }} -->
       </section>
     </main>
   </div>
@@ -14,6 +18,36 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      // our props
+      current: {},
+      index: 0,
+      songs: [
+        {
+          title: "Begin Again",
+          artist: "Nick Mulvey",
+          src: require("./assets/Nick Mulvey - Begin Again.mp3"),
+        },
+        {
+          title: "When I Look At You",
+          artist: "Rosie Carney",
+          src: require("./assets/Rosie Carney - When I Look At You.mp3"),
+        },
+        {
+          title: "Call Me When You Land",
+          artist: "Old Sea Brigade",
+          src: require("./assets/Old Sea Brigade & Luke Sital-Singh - Call Me When You Land.mp3"),
+        },
+      ],
+      player: new Audio(),
+    };
+  },
+  created() {
+    this.current = this.songs[this.index];
+    this.player.src = this.current.src;
+    // this.player.play();
+  },
 };
 </script>
 
