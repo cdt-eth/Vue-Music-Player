@@ -9,6 +9,12 @@
         <h2 class="song-title">
           {{ current.title }} - <span> {{ current.artist }} </span>
         </h2>
+        <div class="controls">
+          <button class="prev">Prev</button>
+          <button class="play" v-if="!isPlaying">Play</button>
+          <button class="pause" v-else>Pause</button>
+          <button class="next">Next</button>
+        </div>
         <!-- {{ songs[0].src }} -->
       </section>
     </main>
@@ -23,6 +29,7 @@ export default {
       // our props
       current: {},
       index: 0,
+      isPlaying: false,
       songs: [
         {
           title: "Begin Again",
