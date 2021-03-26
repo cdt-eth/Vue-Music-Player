@@ -7,7 +7,7 @@
       <section class="player">
         <!-- 2) template strings, from our data -->
         <h2 class="song-title">
-          {{ current.title }} - <span> {{ current.artist }} </span>
+          "{{ current.title }}" - <span> {{ current.artist }} </span>
         </h2>
         <div class="controls">
           <button class="prev" @click="prev">Prev</button>
